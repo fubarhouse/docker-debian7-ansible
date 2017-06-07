@@ -2,7 +2,7 @@
 
 [![Docker Automated build](https://img.shields.io/docker/automated/fubarhouse/docker-debian9-ansible.svg?maxAge=2592000)](https://hub.docker.com/r/fubarhouse/docker-debian9-ansible/)
 
-Debian 9 (Jessie) Docker container for Ansible playbook and role testing.
+Debian 9 (Stretch) Docker container for Ansible playbook and role testing.
 
 ## How to Build
 
