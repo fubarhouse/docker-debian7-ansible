@@ -1,5 +1,5 @@
-FROM debian:jessie
-MAINTAINER Jeff Geerling
+FROM debian:stretch
+MAINTAINER Karl Hepworth
 
 ENV DEBIAN_FRONTEND noninteractive
 
