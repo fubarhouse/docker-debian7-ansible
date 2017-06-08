@@ -15,7 +15,7 @@ RUN apt-get update \
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
        build-essential libffi-dev libssl-dev python-pip python-dev \
-       python-setuptools \
+       systemd python-setuptools \
     && rm -rf /var/lib/apt/lists/* \
     && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
     && apt-get clean
