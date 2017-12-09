@@ -17,7 +17,7 @@ RUN apt-get update \
        build-essential libffi-dev libssl-dev python-dev \
        zlib1g-dev libncurses5-dev systemd python-setuptools curl \
     && rm -rf /var/lib/apt/lists/* \
-    && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
+    && rm -Rf /usr/share/doc && rm -Rf /usr/share/man
 
 # Unfortunately, PIP 1.x simply won't do anymore...
 RUN curl https://bootstrap.pypa.io/get-pip.py | python && \
