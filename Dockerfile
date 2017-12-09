@@ -21,7 +21,7 @@ RUN apt-get update \
 
 # Unfortunately, PIP 1.x simply won't do anymore...
 RUN curl https://bootstrap.pypa.io/get-pip.py | python && \
-RUN pip install urllib3 pyOpenSSL ndg-httpsclient pyasn1 cryptography
+    pip install urllib3 pyOpenSSL ndg-httpsclient pyasn1 cryptography
 RUN pip install ansible
 
 # General clean-up
