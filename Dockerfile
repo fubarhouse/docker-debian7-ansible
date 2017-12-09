@@ -14,15 +14,13 @@ RUN apt-get update \
 # Install Ansible via pip.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-       build-essential libffi-dev libssl-dev python-pip python-dev \
+       build-essential libffi-dev libssl-dev python-dev \
        zlib1g-dev libncurses5-dev systemd python-setuptools curl \
     && rm -rf /var/lib/apt/lists/* \
     && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
 
 # Unfortunately, PIP 1.x simply won't do anymore...
 RUN curl https://bootstrap.pypa.io/get-pip.py | python && \
-    rm -f /usr/bin/pip && \
-    cp /usr/local/bin/pip /usr/bin/pip
 RUN pip install urllib3 pyOpenSSL ndg-httpsclient pyasn1 cryptography
 RUN pip install ansible
 
