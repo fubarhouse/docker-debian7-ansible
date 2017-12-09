@@ -19,7 +19,8 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
     && apt-get clean
-RUN pip install urllib3 pyOpenSSL ndg-httpsclient pyasn1 ansible cryptography
+RUN pip install urllib3 pyOpenSSL ndg-httpsclient pyasn1
+RUN pip install ansible
 
 COPY initctl_faker .
 RUN chmod +x initctl_faker && rm -fr /sbin/initctl && ln -s /initctl_faker /sbin/initctl
