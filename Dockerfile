@@ -15,14 +15,19 @@ RUN apt-get update \
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
        build-essential libffi-dev libssl-dev python-pip python-dev \
-       zlib1g-dev libncurses5-dev systemd python-setuptools \
+       zlib1g-dev libncurses5-dev systemd python-setuptools curl \
     && rm -rf /var/lib/apt/lists/* \
     && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
-    && apt-get clean
-RUN pip install --upgrade pip
-RUN pip install --index-url=https://pypi.python.org/simple/
-RUN pip install urllib3 pyOpenSSL ndg-httpsclient pyasn1
+
+# Unfortunately, PIP 1.x simply won't do anymore...
+RUN curl https://bootstrap.pypa.io/get-pip.py | python && \
+    rm -f /usr/bin/pip && \
+    cp /usr/local/bin/pip /usr/bin/pip
+RUN pip install urllib3 pyOpenSSL ndg-httpsclient pyasn1 cryptography
 RUN pip install ansible
+
+# General clean-up
+RUN apt-get clean
 
 COPY initctl_faker .
 RUN chmod +x initctl_faker && rm -fr /sbin/initctl && ln -s /initctl_faker /sbin/initctl
