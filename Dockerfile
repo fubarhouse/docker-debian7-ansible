@@ -19,10 +19,16 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && rm -Rf /usr/share/doc && rm -Rf /usr/share/man
 
+# Installs nodejs
+RUN curl -sL http://deb.nodesource.com/setup_6.x | sh - && \
+    apt-get install -y nodejs
+RUN node --version
+RUN npm --version
+
 # Unfortunately, PIP 1.x simply won't do anymore...
-RUN curl https://bootstrap.pypa.io/get-pip.py | python;
-#RUN pip install urllib3 pyOpenSSL ndg-httpsclient pyasn1 cryptography
-#RUN pip install ansible
+RUN curl http://bootstrap.pypa.io/get-pip.py | python;
+RUN pip install urllib3 pyOpenSSL ndg-httpsclient pyasn1 cryptography
+RUN pip install ansible
 
 # General clean-up
 RUN apt-get clean
@@ -33,12 +39,6 @@ RUN chmod +x initctl_faker && rm -fr /sbin/initctl && ln -s /initctl_faker /sbin
 # Install Ansible inventory file
 RUN mkdir -p /etc/ansible \
     && echo "[local]\nlocalhost ansible_connection=local" > /etc/ansible/hosts
-
-# Installs nodejs
-RUN curl -sL http://deb.nodesource.com/setup_6.x | sh - && \
-    apt-get install -y nodejs
-RUN node --version
-RUN npm --version
 
 # Report some information
 RUN python --version
