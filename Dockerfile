@@ -21,8 +21,8 @@ RUN apt-get update \
 
 # Unfortunately, PIP 1.x simply won't do anymore...
 RUN curl https://bootstrap.pypa.io/get-pip.py | python;
-RUN pip install urllib3 pyOpenSSL ndg-httpsclient pyasn1 cryptography
-RUN pip install ansible
+#RUN pip install urllib3 pyOpenSSL ndg-httpsclient pyasn1 cryptography
+#RUN pip install ansible
 
 # General clean-up
 RUN apt-get clean
@@ -35,12 +35,11 @@ RUN mkdir -p /etc/ansible \
     && echo "[local]\nlocalhost ansible_connection=local" > /etc/ansible/hosts
 
 # Installs nodejs
-RUN apt-get install curl --yes && \
-    curl -sL https://deb.nodesource.com/setup_6.x | bash - && \
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - && \
     apt-get install -y nodejs
 RUN node --version
 RUN npm --version
 
 # Report some information
 RUN python --version
-RUN ansible --version
+#RUN ansible --version
