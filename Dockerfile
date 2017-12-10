@@ -34,12 +34,6 @@ RUN chmod +x initctl_faker && rm -fr /sbin/initctl && ln -s /initctl_faker /sbin
 RUN mkdir -p /etc/ansible \
     && echo "[local]\nlocalhost ansible_connection=local" > /etc/ansible/hosts
 
-# Installs nodejs
-RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - && \
-    apt-get install -y nodejs
-RUN node --version
-RUN npm --version
-
 # Report some information
 RUN python --version
 #RUN ansible --version
